@@ -31,6 +31,11 @@ struct q_node *removeFromQueue(struct q_node *tail, struct q_node *head) {
 }
 
 
+struct q_node *addToQueueEnd(struct q_node *node, struct q_node *tail) {
+    tail->next = node;
+    return node;
+}
+
 struct q_node *createNewNode(int data) {
     struct q_node *new;
     new = (struct q_node*) malloc(sizeof(struct q_node));
@@ -55,10 +60,12 @@ int main() {
     struct q_node *head;
     struct q_node *tail;
 
-    head = addToQueue(createNewNode(4), head);
-    head = addToQueue(createNewNode(5), head);
+    head = addToQueue(createNewNode(7), head);
+    tail = head;
+    head = addToQueue(createNewNode(2), head);
     printList(head);
-    tail = removeFromQueue(tail, head);
+    head = addToQueue(createNewNode(4), head);
+    tail = addToQueueEnd(createNewNode(9), tail);
     printList(head);
     return 0;
 }
